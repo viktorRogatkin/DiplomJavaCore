@@ -1,12 +1,12 @@
 package ru.netology.javacore;
 
 import org.junit.jupiter.api.*;
+
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TodosTests {
-
-    private Todos todos;
 
     @BeforeAll
     public static void startTesting() {
@@ -15,37 +15,57 @@ public class TodosTests {
 
     @BeforeEach
     public void setUp() {
-        System.out.println("Тест произведен");
+        System.out.println("запуск теста");
+    }
+
+    @AfterEach
+    public void refresh() {
+        Todos.tasks.clear();
+        System.out.println("тест произведен");
+    }
+
+    @AfterAll
+    public static void endTesting() {
+        System.out.println("Завершение тестирования");
+    }
+
+    @Test
+    public void testRemoveTask() {
+        Todos todos = new Todos();
         String task1 = "Отдых";
         String task2 = "Пробежка";
         String task3 = "Работа";
         Todos.tasks.add(task1);
         Todos.tasks.add(task2);
         Todos.tasks.add(task3);
-        todos = new Todos();
-    }
-
-    @AfterEach
-    public void refresh() {
-        Todos.tasks.clear();
-    }
-
-    @Test
-    public void testRemoveTask(){
         todos.removeTask("Работа");
         ArrayList<String> taskList = todos.getListTask();
         Assertions.assertEquals(taskList.size(), 2);
     }
 
     @Test
-    public void testAddNewTask(){
+    public void testAddNewTask() {
+        Todos todos = new Todos();
+        String task1 = "Отдых";
+        String task2 = "Пробежка";
+        String task3 = "Работа";
+        Todos.tasks.add(task1);
+        Todos.tasks.add(task2);
+        Todos.tasks.add(task3);
         Assertions.assertEquals(todos.getListTask().size(), 3);
         todos.addTask("Учеба");
         Assertions.assertEquals(todos.getListTask().size(), 4);
     }
 
     @Test
-    public void testGetAllTasks(){
+    public void testGetAllTasks() {
+        Todos todos = new Todos();
+        String task1 = "Отдых";
+        String task2 = "Пробежка";
+        String task3 = "Работа";
+        Todos.tasks.add(task1);
+        Todos.tasks.add(task2);
+        Todos.tasks.add(task3);
         String testTaskLIst = "[Отдых, Пробежка, Работа]";
         assertTrue(todos.getAllTasks().equals(testTaskLIst));
     }
