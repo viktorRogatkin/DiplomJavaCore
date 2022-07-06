@@ -4,9 +4,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Todos {
-    private String type;
-    private String task;
-    static ArrayList<String> tasks = new ArrayList<>(); //static ?
+    public String type;
+    public String task;
+    public static ArrayList<String> tasks = new ArrayList<>();
 
     public void addTask(String task) {
         tasks.add(task);
