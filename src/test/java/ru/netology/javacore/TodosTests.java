@@ -42,7 +42,6 @@ public class TodosTests {
         Todos.tasks.add(task3);
         todos.removeTask("Работа");
         ArrayList<String> taskList = todos.getListTask();
-        //Assertions.assertEquals(taskList.size(), 2);
         assertThat(taskList.size()).isEqualTo(2);
     }
 
@@ -55,10 +54,8 @@ public class TodosTests {
         Todos.tasks.add(task1);
         Todos.tasks.add(task2);
         Todos.tasks.add(task3);
-        //Assertions.assertEquals(todos.getListTask().size(), 3);
         assertThat(todos.getListTask().size()).isEqualTo(3);
         todos.addTask("Учеба");
-        //Assertions.assertEquals(todos.getListTask().size(), 4);
         assertThat(todos.getListTask().size()).isEqualTo(4);
     }
 
@@ -72,7 +69,6 @@ public class TodosTests {
         Todos.tasks.add(task2);
         Todos.tasks.add(task3);
         String testTaskLIst = "[Отдых, Пробежка, Работа]";
-        //assertTrue(todos.getAllTasks().equals(testTaskLIst));
         assertThat(todos.getAllTasks()).isEqualTo(testTaskLIst);
     }
 }
