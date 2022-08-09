@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class TodoServer {
 
@@ -19,7 +18,7 @@ public class TodoServer {
     }
 
     public void start() throws IOException {
-        //int port = 8989;
+        int port = 8989;
         System.out.println("Starting server at " + port + "...");
         ServerSocket serverSocket = new ServerSocket(port);
         while (true) {

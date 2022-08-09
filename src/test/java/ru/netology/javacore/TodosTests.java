@@ -4,11 +4,10 @@ import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class TodosTests {
+
 
     @BeforeAll
     public static void startTesting() {
@@ -32,7 +31,7 @@ public class TodosTests {
     }
 
     @Test
-    public void testRemoveTask() {
+    public void testRemoveTask() throws Error,RuntimeException {
         Todos todos = new Todos();
         String task1 = "Отдых";
         String task2 = "Пробежка";
@@ -46,7 +45,7 @@ public class TodosTests {
     }
 
     @Test
-    public void testAddNewTask() {
+    public void testAddNewTask() throws Error,RuntimeException {
         Todos todos = new Todos();
         String task1 = "Отдых";
         String task2 = "Пробежка";
@@ -60,7 +59,7 @@ public class TodosTests {
     }
 
     @Test
-    public void testGetAllTasks() {
+    public void testGetAllTasks() throws Error,RuntimeException {
         Todos todos = new Todos();
         String task1 = "Отдых";
         String task2 = "Пробежка";
