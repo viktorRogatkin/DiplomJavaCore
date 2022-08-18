@@ -1,15 +1,14 @@
 package ru.netology.javacore;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.*;
 
-import static org.assertj.core.api.Assertions.*;
-
-public class TodosTests {
-
+class TodosTests {
     @BeforeAll
     public static void startTesting() {
         System.out.println("Старт тестирования");
@@ -32,43 +31,44 @@ public class TodosTests {
     }
 
     @Test
-    public void testRemoveTask() {
-        Todos todos = new Todos();
-        String task1 = "Отдых";
-        String task2 = "Пробежка";
-        String task3 = "Работа";
-        Todos.tasks.add(task1);
-        Todos.tasks.add(task2);
-        Todos.tasks.add(task3);
-        todos.removeTask("Работа");
-        ArrayList<String> taskList = todos.getListTask();
-        assertThat(taskList.size()).isEqualTo(2);
+    void testAddTask() {
+        (new Todos()).addTask("отдых");
+        (new Todos()).addTask("пробежка");
+        (new Todos()).addTask("работа");
+        ArrayList<String> stringList = Todos.tasks;
+        assertEquals("отдых",stringList.get(0));
+        assertEquals("пробежка", stringList.get(1));
+        assertEquals("работа", stringList.get(2));
     }
 
     @Test
-    public void testAddNewTask() {
+    void testRemoveTask() {
         Todos todos = new Todos();
-        String task1 = "Отдых";
-        String task2 = "Пробежка";
-        String task3 = "Работа";
-        Todos.tasks.add(task1);
-        Todos.tasks.add(task2);
-        Todos.tasks.add(task3);
-        assertThat(todos.getListTask().size()).isEqualTo(3);
-        todos.addTask("Учеба");
-        assertThat(todos.getListTask().size()).isEqualTo(4);
+        todos.addTask("отдых");
+        todos.addTask("пробежка");
+        todos.addTask("работа");
+        ArrayList<String> stringList = Todos.tasks;
+        todos.removeTask("пробежка");
+        todos.removeTask("отдых");
+        assertEquals("[работа]", todos.getAllTasks());
     }
 
     @Test
-    public void testGetAllTasks() {
+    void testGetAllTasks() {
         Todos todos = new Todos();
-        String task1 = "Отдых";
-        String task2 = "Пробежка";
-        String task3 = "Работа";
-        Todos.tasks.add(task1);
-        Todos.tasks.add(task2);
-        Todos.tasks.add(task3);
-        String testTaskLIst = "[Отдых, Пробежка, Работа]";
-        assertThat(todos.getAllTasks()).isEqualTo(testTaskLIst);
+        todos.addTask("отдых");
+        todos.addTask("пробежка");
+        todos.addTask("работа");
+        assertEquals("[отдых, пробежка, работа]", todos.getAllTasks());
+    }
+
+    @Test
+    void testConstructor() {
+        Todos actualTodos = new Todos();
+        ArrayList<String> expectedListTask = Todos.tasks;
+        assertSame(expectedListTask, actualTodos.getListTask());
+        assertNull(actualTodos.getTask());
+        assertNull(actualTodos.getType());
     }
 }
+
