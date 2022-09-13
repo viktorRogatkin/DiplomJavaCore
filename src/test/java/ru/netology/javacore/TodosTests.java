@@ -71,4 +71,3 @@ class TodosTests {
         assertNull(actualTodos.getType());
     }
 }
-
